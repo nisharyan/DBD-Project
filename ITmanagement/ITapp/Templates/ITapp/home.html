@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<hr>
+<a style="font-size: 3rem;"href="{% url 'resources' %}">Find Resource</a>
+<hr>
+<a href="{% url 'create' %}" style="font-size: 3rem;">Create Resource</a>
+<hr>
+<a href="{% url 'upload' %}" style="font-size: 3rem;">Upload File</a>
+<hr>
+<a href="{% url 'staffs' %}" style="font-size: 3rem;">Add Staff</a>
+<hr>
+<a href="{% url 'user' request.user.email %}" style="font-size: 3rem;">Profile</a>
+
+{% endblock %}

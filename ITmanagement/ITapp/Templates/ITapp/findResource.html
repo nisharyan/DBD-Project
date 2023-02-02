@@ -1,0 +1,71 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div id="content" class="site-content">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <div class="main-news-list">
+                <div class="container">
+                    <!-- Start: Search Section -->
+                    <section class="search-filters">
+                        <div class="filter-box">
+                            <h3>Find Resource</h3>
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="keywords">Search by Department</label>
+                                                <input class="form-control" placeholder="Search by Department" id="keywords" name="p" type="text">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4 col-sm-6">
+                                          <div class="form-group">
+                                              <label class="sr-only" for="keywords">Search by Description</label>
+                                              <input class="form-control" placeholder="Search by Description" id="keywords" name="r" type="text">
+                                          </div>
+                                        </div>
+  
+                                        <div class="col-md-4 col-sm-6">
+                                          <div class="form-group">
+                                              <label class="sr-only" for="keywords">Search by Resource</label>
+                                              <input class="form-control" placeholder="Search by Resource" id="keywords" name="q" type="text">
+                                          </div>
+                                        </div>
+                                       
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="submit" value="Search ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </main>
+              </div>
+            </div>
+
+<h1>{{found}} resources match the query</h1>
+
+{% for resource in resources %}
+
+    <h3><a href = "{% url 'database' resource.id %}">{{resource.id}}</a>--{{resource.equipType}}--{{resource.addedDate}}</h3>
+    <h5><a href = "{% url 'update' resource.id %}">Update</a></h5>
+    <h5><a href = "{% url 'delete' resource.id %}">Delete</a></h5>
+
+{% endfor %}
+
+{% endblock %}
+

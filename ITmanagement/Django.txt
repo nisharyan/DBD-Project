@@ -1,0 +1,55 @@
+admin.py
+@admin.register(Department)
+class DepartmentAdmin(ImportExportModelAdmin):
+   list_display = ('deptName')
+
+
+resources.py
+from import_export import resources
+from .models import Department
+
+class DepartmentResource(resources.ModelResource):
+  class meta:
+     model = Department
+
+
+view.py
+from django.shortcuts import render
+from .models import Department
+from .resource import DepartmentResource
+from django.contrib import messages
+from tablib import Dataset
+from django.http import HttpResponse
+
+def simple_upload(request):
+    if request.method == 'POST':
+        dept_resource = DepartmentResource()
+        dataset = Dataset()
+        new_dept = request.FILES['myfile']
+
+        imported_data = dataset.load(new_dept.read(),format='xlsx')
+        #print(imported_data)
+        for data in imported_data:
+        	print(data[1])
+        	value = Department(
+        		data[0],
+        		data[1]
+        		)
+        	value.save()       
+        
+        #result = person_resource.import_data(dataset, dry_run=True)  # Test the data import
+
+        #if not result.has_errors():
+        #    person_resource.import_data(dataset, dry_run=False)  # Actually import now
+          return render(request,'upload.html')
+          return render(request, 'input.html')
+
+
+
+urls.py
+
+from firstapp import views
+
+path(' ',views.simple_upload)
+
+    

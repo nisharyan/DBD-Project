@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="myfile">
+        <button type="submit">Upload</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Resource ID</th>
+            <th>Equip Type</th>
+            <th>Added Date</th>
+            <th>Department</th>
+            <th>Generic Descr</th>
+            <th>Specific Descr</th>
+        </tr>
+    </table>
+
+
+    <table>
+        {% for i, r in data.iterrows %} 
+            <tr>
+                <td><a href = "{% url 'update' r.id %}">{{r.id}}</a></td>
+                <td>{{r.equipType}}</td>
+                <td>{{r.addedDate}}</td>
+                <td>{{r.Dept}}</td>
+                <td>{{r.sDescr}}</td>
+                <td>{{r.gDescr}}</td>
+            </tr>
+        {% endfor %} 
+    </table>
+
+{% endblock %}

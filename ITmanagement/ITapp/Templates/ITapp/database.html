@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+
+{%block content%}
+<h1> {{found}} </h1>
+        <h3>Resource ID: {{resource.id}}<br> EquipType: {{resource.equipType}}<br>  Date: {{resource.addedDate}}
+        <br>
+        <h3>Department: {{owner.ownDept.deptName}}</h3>
+        <br>
+        <h3>General Description: {{descr.genericDescr}}<br> Special Description: {{descr.specificDescr}}</h3>
+
+{% endblock %}
