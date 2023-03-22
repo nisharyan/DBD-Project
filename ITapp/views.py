@@ -44,7 +44,7 @@ def base(request):
     context['routers'] = len(routers)
     context['desktops'] = len(desktops)
     context['printers'] = len(printers)
-    return render(request, 'ITapp/index.html', context)
+    return render(request, 'ITapp/Templates/ITapp/index.html', context)
 
 def home(request):
 
