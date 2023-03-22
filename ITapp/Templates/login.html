@@ -1,0 +1,34 @@
+
+
+{% load static %}
+
+
+{% block content %}
+<link href="{% static '/style1.css' %}" rel="stylesheet" type="text/css" />
+
+<div class="login-form">
+  <form method="POST" action="">
+    {% csrf_token %}
+    
+    <h1>Login</h1>
+    <div class="content">
+      <div class="input-field">
+        <input type="text" name="username" placeholder="Username"/>
+      </div>
+      <div class="input-field">
+        <input type="password" name="password" placeholder="Password"/>
+      </div>
+    </div>
+    <div class="action" style="text-align: center;
+    margin-left: 20rem;
+    margin-bottom: 30px;">
+      <input type="submit" value="Logisdsn" style="padding: 10px;"/>
+    </div>
+  </form>
+</div>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
+{% endblock %}

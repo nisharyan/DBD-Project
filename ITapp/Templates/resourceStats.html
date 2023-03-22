@@ -1,0 +1,89 @@
+{% extends 'ITapp/base.html'%}
+{% block sidebar %}
+{% if user.is_authenticated and user.is_superuser %}
+{% include 'ITapp/Sidebar.html'%}
+{% endif %}
+{% endblock %}
+
+
+
+
+{% block content %}
+<h1 id="heading-Data">Resource Overview</h1>
+    <div class="chart-container" style="position: relative; height:60vh; width:70vw">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <h1></h1>
+    
+{% endblock %}
+
+{% block scripts %}
+ 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+let address = window.location.href;
+address = address.split('/').slice(-2).slice(0,-1)
+document.getElementById('heading-Data').innerHTML = address + " Overiew";
+document.addEventListener("DOMContentLoaded", function () {
+
+const ctx = document.getElementById("myChart")
+
+const myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+        labels: [
+            {% for dept in departments %}
+                '{{dept.deptName}}',
+            {% endfor %}
+        ],
+        datasets: [
+            {
+                label: "Count",
+                data: [
+                    {% for i in count %}
+                        {{i}},
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 159, 64, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)",
+                ],
+                borderColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 159, 64, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                ],
+                borderWidth: 5,
+                hoverBorderRadius: 10,
+                hoverOffset: 25
+            }
+        ],
+    },
+    options: {
+        scales: {
+            // y: {
+            //     beginAtZero: true,
+            // },
+            // xAxes: [{
+            //     barThickness: 6, 
+            //     maxBarThickness: 8 
+            // }]
+        },
+    },
+});
+});
+
+
+
+</script>
+
+{% endblock %}

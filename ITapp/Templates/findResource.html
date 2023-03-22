@@ -1,0 +1,72 @@
+{% extends 'ITapp/base.html'%}
+{% block content %}
+{% if user.is_authenticated  %}
+
+
+
+    <h1 class="mt-5 h2">Resource List</h1>
+    <br>
+    <form action="" method="POST" id="search-form">
+        {% csrf_token %}
+        <h4>Filters:</h4>
+        <select id="cars" name="working">
+            <option value="True">Working</option>
+            <option value="False">Not Working </option>
+          </select>
+        <button style="background-color: brown;"type="submit">Search</button>
+        <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+          <div class="input-group" style="font-size: 2rem;">
+            <input id="itemInput"style="font-size: 2rem;"class="form-control border-0 bg-light" placeholder="Search by Department" id="keywords" name="p" aria-describedby="button-addon1"type="search">
+            <input style="font-size: 2rem;" class="form-control border-0 bg-light" placeholder="Search by Description" id="keywords" name="r" >
+            <input style="font-size: 2rem;" class="form-control border-0 bg-light" placeholder="Search by Resource" id="keywords" name="q" >
+            <div class="input-group-append">
+              <button style="font-size: 2rem;" id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="bi bi-search"></i></button>
+            </div>
+          </div>
+        </div>
+    </form>
+
+    <table class="mt-4 table table-bordered border-dark">
+        <thead class="table-dark">
+            <tr style="font-size: 2rem;">
+                <th scope="col">ResourceID</th>
+                <th scope="col">EquipType</th>
+                <th scope="col">AddedDate</th> 
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+
+                
+            </tr>
+        </thead>
+        <tbody style="font-size: 2rem;">
+            {% for resource in resources %}
+            <tr>
+                
+              
+                <td><a href = "{% url 'database' resource.id %}">{{resource.id}}</a></td>
+                <td>{{resource.equipType}}</td>
+                <td>{{resource.addedDate}}</td>
+               
+                
+                <td style="font-size: 2rem;">
+                   <a href="{% url 'update' resource.id %}" class="btn text secondary px-0">
+                    <i style="font-size: 2rem;" class="bi bi-pencil-square"></i>
+                   </a>
+                </td>
+                <td style="font-size: 2rem;">
+                    <a href="{% url 'delete' resource.id %}" class="btn text secondary px-0">
+        
+                        <i  style="font-size: 2rem;"class="bi bi-trash"></i>
+                    
+                </td>
+               
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        
+    </div>
+
+{% endif %} 
+{% endblock %}

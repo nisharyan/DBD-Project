@@ -1,0 +1,43 @@
+{% extends 'ITapp/base.html'%}
+{% block sidebar %}
+{% if user.is_authenticated %}
+{% include 'ITapp/Sidebar.html'%}
+{% endif %}
+{% endblock %}
+{% block content %}
+{% if user.is_authenticated and user.is_superuser %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 " style="padding-top: 25px;">
+        <div class="container rounded bg-white mt-5 mb-5">
+                <div class="row">
+                    <div class="col-md-3 border-right">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://media.istockphoto.com/id/178716575/photo/mobile-devices.jpg?b=1&s=170667a&w=0&k=20&c=l3I_odDQkRkXCM1tlBdGBzzRsr3vEzeObGNsTTPuw0s="><span class="font-weight-bold">{{resource.equipType}}</span><span class="text-black-50">{{resource.id}}</span><span> </span></div>
+                    </div>
+                    <div class="col-md-5 border-right">
+                        <div class="p-3 py-5">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Resource Details</h4>
+                            </div>
+                            
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">RID: </label> {{resource.id}} </div>
+                                <div class="col-md-12"><label class="labels">Equip Type: </label>  {{resource.equipType}} </div>
+                                <div class="col-md-12"><label class="labels">Date: </label>  {{resource.addedDate}}</div>
+                                <div class="col-md-12"><label class="labels">Dept: </label>  {{owner.ownDept}} </div>
+                                <div class="col-md-12"><label class="labels">Specific Descr</label><br>{{descr.genericDescr}}</div>
+                                <div class="col-md-12"><label class="labels">Generic Descr</label><br>{{descr.specificDescr}}</div>
+     
+                            </div>
+                            
+                            
+                        </div>
+                    
+                </div>
+            </div>
+            </div>
+            </div>
+</main>
+
+
+{% endif %} 
+{% endblock %}

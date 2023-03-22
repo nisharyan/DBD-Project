@@ -1,0 +1,30 @@
+{% extends 'ITapp/base.html'%}
+{% block sidebar %}
+{% include 'ITapp/Sidebar.html'%}
+{% endblock %}
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div style="display: flex;">
+        <div class="maincontainer-userprofile" style="background-color: rgba(24,35,89,.85); width: 35%;  padding: 40px;">
+            <label style="color: #fff;">Name:</label>
+            <h3 style="color: #fff;">{{users}}</h3>
+            <label style="color: #fff;">Department:</label>
+        <h3 style="color: #fff;">{{users.department}}</h3>
+        <label style="color: #fff;">Email:</label>
+        <h3 style="color: #fff; text-transform: lowercase;">{{users.email}}</h3>
+        <label style="color: #fff;">Phone Number:</label>
+        <h3 style="color: #fff; margin-bottom: 2rem;">{{users.phoneNo}}</h3>
+        <a href="{% url 'changePassword' request.user.email %}" style="color: #333; background-color: aquamarine; padding: 1rem; margin-top: 1rem;">Change password</a>
+        </div>
+        <div style=" background-color: rgba(24,35,89,.85); padding: 5rem;">
+            <img 
+                src="https://rvce.edu.in/sites/default/files/logo_0.png"
+                alt="Home" style="width: 120px" />
+        </div>
+    </div>
+
+</main>
+
+{% endblock %}
+
