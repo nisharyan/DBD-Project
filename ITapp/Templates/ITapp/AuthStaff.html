@@ -1,0 +1,87 @@
+{% extends 'ITapp/base.html'%}
+{% block sidebar %}
+{% include 'ITapp/Sidebar.html'%}
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+{% if not user.is_superuser %}
+<h1>Permission not allowed</h1>
+
+{% else %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="card text-white col-md-6 offset-md-3 mt-5 p-5" style="background-color: #394371; margin-top: 0px;">
+        <h1 class="h2 mb-4" style="margin-bottom: 0rem!important;">Enter Staff details</h1>
+    <div>
+        <form method = "POST" action="">
+                {% csrf_token %}
+
+                <div class="mt-4" style="margin-bottom: 1rem;">
+                    <label class="col-form-label">Email *</label>
+                    <input type="email" name="email" value="" required  required pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{1,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" style="  width: 100%;
+                    padding: 5px 10px;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;">
+                </div>
+
+                <div class="mt-4">
+                    <label class="col-form-label">First Name *</label>   
+                    <input type="text" name="firstname" value="" required   pattern="[a-zA-Z ]{2,}" required style="  width: 100%;
+                    padding: 5px 10px;
+                    margin: 3px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;">
+
+                </div>
+
+                <div class="mt-4">
+                    <label class="col-form-label">Last Name *</label>
+                    <input type="text" name="lastname" value="" required  required pattern="[a-zA-Z ]{1,}" style="  width: 100%;
+                    padding: 5px 10px;
+                    margin: 3px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;">
+
+                </div>
+
+                <div class="mt-4">
+                    <label class="col-form-label">Department *</label>
+                    <input type="text" name="department" maxlength="3" minlength="2"value="" required  pattern= "[a-zA-Z]{2, 3}"style="  width: 100%;
+                    padding: 5px 10px;
+                    margin: 3px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;">
+                </div>
+
+                <div class="mt-4">
+                    <label class="col-form-label">Phone no *</label>
+                    <input type="text" name="phoneNo" value="" required required  pattern="^[6-9]\d{9}$" 
+                    style="  width: 100%;
+                    padding: 5px 10px;
+                    margin: 3px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;">
+
+                </div>
+        
+                <input type="submit" value="Submit" style="background-color: #17a2b8; margin-top: 2rem; padding: 1rem;"/>
+        </form>
+    </div>
+    </div>
+</main>
+
+
+{% endif %} 
+{% endif %} 
+{% endblock %}
