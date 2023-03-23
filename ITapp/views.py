@@ -79,7 +79,7 @@ def home(request):
     context['departments'] = departments 
     context['home'] = True
 
-    return render(request, 'ITapp\index.html', context)
+    return render(request, 'ITapp/home.html', context)
 
 def loginPage(request):
     if request.user.is_authenticated:

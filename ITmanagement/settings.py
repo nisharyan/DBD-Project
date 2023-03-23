@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ITapp.apps.ItappConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'ITmanagement.urls'
@@ -139,3 +141,6 @@ EMAIL_HOST_PASSWORD = 'dhkvkuqktbaxwldo'
 EMAIL_POST=587
 EMAIL_USE_TLS=True
 
+CSRF_TRUSTED_ORIGINS = ['https://railway.app']
+
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
