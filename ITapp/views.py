@@ -149,14 +149,10 @@ def simple_upload(request):
             descr.specificDescr = data['sDescr'][i]
             descr.genericDescr = data['gDescr'][i] 
             descr.save()
-
-
-        messages.success(request, 'Uploaded')
+        messages.success(request, 'Uploaded Successfully')
         for idx in data.index:
             for column in data.columns:
                 print(data[column][idx])
-
-
     return render(request,'ITapp/input.html', {'data':data})
 
 
@@ -248,7 +244,7 @@ def createResource(request):
             descr.genericDescr = form.cleaned_data['gDescr']
             descr.save()
 
-            return redirect('/database/'+str(resource.id)+"/")
+            messages.success(request,"Equipment added Successfully")
         
     context = {'form':form}
     return render(request, 'ITapp/createResource.html', context)
@@ -441,11 +437,11 @@ def department(request):
 
 def chats(request):
     context={}
-    context = {}
     departments = Department.objects.all()
 
     for dept in departments:
         context[dept.deptName]=0
+        context[dept.deptName+"_laptops"]=0
         context[dept.deptName+"_printers"]=0
         context[dept.deptName+"_servers"]=0
         context[dept.deptName+"_desktops"]=0
@@ -457,7 +453,7 @@ def chats(request):
 
     for laptop in laptops:
         temp = Owns.objects.get(ownRID=laptop.id)
-        context[temp.ownDept.deptName]+=1
+        context[temp.ownDept.deptName+"_laptops"]+=1
 
     desktops = Resource.objects.filter(
         Q(equipType__icontains="Desktop") 
