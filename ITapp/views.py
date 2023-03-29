@@ -312,9 +312,7 @@ def staff(request):
         form.save()
         user = User.objects.create_user(userName, userMail, userPass)
         user.save()
-        messages.success(request, 'Staff Added')
-        
-        message = "testing the functionality"
+        message = "Your profile has been added to IT Managment System.\nYour username:"+userName+"\nYour password:"+userPass+"\nPlease change your password as soon as possible."
         send_mail(
             'Staff added '+userName,
             message,
@@ -323,8 +321,7 @@ def staff(request):
             fail_silently=False,
         )
 
-        return redirect('Home')
-
+    messages.success(request, 'Staff Added')
     context = {'form':form}
     return render(request, 'ITapp/AuthStaff.html', context)
 

@@ -8,12 +8,6 @@
     <br>
     <form action="" method="POST" id="search-form">
         {% csrf_token %}
-        <h4>Filters:</h4>
-        <select id="cars" name="working">
-            <option value="True">Working</option>
-            <option value="False">Not Working </option>
-          </select>
-        <button style="background-color: brown;"type="submit">Search</button>
         <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
           <div class="input-group" style="font-size: 2rem;">
             <input id="itemInput"style="font-size: 2rem;"class="form-control border-0 bg-light" placeholder="Search by Department" id="keywords" name="p" aria-describedby="button-addon1"type="search">
