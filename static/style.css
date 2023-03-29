@@ -1,11 +1,7 @@
 @charset "UTF-8";
 /*sddsdsds*/
 /*
-Template Name: LIBRARIA
-Template URI: http://www.libraria.com
-Author: PressTigers
-Author URI: http://www.presstigers.com
-Version: 1.0.0
+Template
 */
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
@@ -173,6 +169,7 @@ textarea {
 button {
   overflow: visible;
 }
+
 button,
 select {
   text-transform: none;
